@@ -6,14 +6,14 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git url:'https://github.com/vikro2021/vikro-nginx-demo1.git', branch:'master'
+        git url:'https://github.com/vikro2021/demo1.git', branch:'master'
       }
     }
     
       stage("Build image") {
             steps {
                 script {
-                    myapp = docker.build("vikro2021/vikro-nginx1:${env.BUILD_ID}")
+                    myapp = docker.build("vikro2021/demo1:${env.BUILD_ID}")
                 }
             }
         }
