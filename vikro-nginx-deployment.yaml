@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: vikro-nginx1
+  name: vikro-nginx1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vikro-nginx1
+  template:
+    metadata:
+      labels:
+        build_number: ${BUILD_NUMBER}
+        role: rolling-update
+        app: vikro-nginx1
+    spec:
+      containers:
+      - image: vikro2021/vikro-nginx1:latest
+        name: vikro-nginx1
+        ports:
+        - containerPort: 80
+          name: vikro-nginx1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vikro-nginx1
+  labels:
+    app: vikro-nginx1
+spec:
+  type: LoadBalancer
+  selector:
+    app: vikro-nginx1
+  ports:
+    - protocol: TCP
+      targetPort: 80
+      port: 80
