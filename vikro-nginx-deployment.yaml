@@ -26,9 +26,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: demo1
+  name: demo1-lb
   labels:
-    app: demo1
+    app: demo1-lb
 spec:
   type: LoadBalancer
   selector:
